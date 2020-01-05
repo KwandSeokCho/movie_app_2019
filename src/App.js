@@ -63,20 +63,54 @@ Food.propTypes = {
   // rating: PropTypes.string.isRequired,
 }
 
-function App() {
-  return (
-    <div>
-      <h1>Hello!!!</h1>
+// fuinction COmponent
+// function App() {
+//   return (
+//     <div>
+//       <h1>Hello!!!</h1>
       
-      {foodILike.map(dish => (
-        <Food key={dish.id} name={dish.name} picture={dish.image} rating={dish.rating} />
-      ))}
+//       {foodILike.map(dish => (
+//         <Food key={dish.id} name={dish.name} picture={dish.image} rating={dish.rating} />
+//       ))}
 
-      {/* {foodILike.map(renderFood) } */}
+//       {/* {foodILike.map(renderFood) } */}
 
 
+//     </div>
+//   );
+// }
+
+// Class Pomponent
+class App extends React.Component{
+  state = {
+    count : 0
+  }
+
+  add = () =>{
+    console.log("add");
+    // 현재 이방법은 좋지않다. 외부 state를 계속 참조하기때문에..
+    // this.setState({ count  : this.state.count +1 });
+
+    // react에서 외부의 상태에 의존하지 아ㅣㄴㅎ는 가장 좋은 방법
+    this.setState( current => ({ count : current.count + 1 }) );
+  }
+  minus = () =>{
+    console.log("minus");
+    this.setState({
+      count  : this.state.count -1
+    });
+  }
+
+  // setState를 호출하면 React는 state를 refresh하고 또한 render function을 호출한다.
+  // 그러나 react는  변화가 있는 부분만 render 된다.
+  render(){
+    return <div>
+      <h1>The number is: {this.state.count}</h1>
+      <button onClick={this.add}>add</button>
+      <button onClick={this.minus}>Minus</button>
     </div>
-  );
+  }
 }
+
 
 export default App;
