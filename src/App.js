@@ -82,6 +82,25 @@ Food.propTypes = {
 
 // Class Pomponent
 class App extends React.Component{
+
+  constructor(props){
+    super(props);
+    console.log('constructor :: ');
+  }
+
+  componentWillMount(){
+    console.log('componentWillMount :: ');
+  }
+  componentDidMount(){
+    console.log('componentDidMount :: component rendered');
+  }
+  componentDidUpdate(){
+    console.log('componentDidUpdate :: I just Update!');
+  }
+  componentWillMount(){
+    console.log('componentWillMount :: bye bye');
+  }
+
   state = {
     count : 0
   }
@@ -104,6 +123,7 @@ class App extends React.Component{
   // setState를 호출하면 React는 state를 refresh하고 또한 render function을 호출한다.
   // 그러나 react는  변화가 있는 부분만 render 된다.
   render(){
+    console.log('render');
     return <div>
       <h1>The number is: {this.state.count}</h1>
       <button onClick={this.add}>add</button>
