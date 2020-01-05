@@ -24,7 +24,7 @@ const foodILike = [
       "http://cdn-image.myrecipes.com/sites/default/files/styles/4_3_horizontal_-_1200x900/public/image/recipes/ck/12/03/bibimbop-ck-x.jpg?itok=RoXlp6Xb",
     rating: 2.9
   },
-  {
+  { 
     id: 4,
     name: "Doncasu",
     image:
