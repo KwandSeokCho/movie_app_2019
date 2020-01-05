@@ -92,6 +92,9 @@ class App extends React.Component{
     console.log('componentWillMount :: ');
   }
   componentDidMount(){
+    setTimeout( ()=> {
+      this.setState({isLoading : false}) 
+    },1000);
     console.log('componentDidMount :: component rendered');
   }
   componentDidUpdate(){
@@ -102,33 +105,21 @@ class App extends React.Component{
   }
 
   state = {
-    count : 0
+    isLoading : true
   }
 
-  add = () =>{
-    console.log("add");
-    // 현재 이방법은 좋지않다. 외부 state를 계속 참조하기때문에..
-    // this.setState({ count  : this.state.count +1 });
-
-    // react에서 외부의 상태에 의존하지 아ㅣㄴㅎ는 가장 좋은 방법
-    this.setState( current => ({ count : current.count + 1 }) );
-  }
-  minus = () =>{
-    console.log("minus");
-    this.setState({
-      count  : this.state.count -1
-    });
-  }
 
   // setState를 호출하면 React는 state를 refresh하고 또한 render function을 호출한다.
   // 그러나 react는  변화가 있는 부분만 render 된다.
   render(){
     console.log('render');
-    return <div>
-      <h1>The number is: {this.state.count}</h1>
-      <button onClick={this.add}>add</button>
-      <button onClick={this.minus}>Minus</button>
-    </div>
+    // ES6 문법을 통해 this.state를 계속 안쓰고 미리 선언
+    const {isLoading} = this.state; 
+    return (
+      <div>
+        {isLoading ? "Loading.. " : "We are ready" }
+      </div>
+    ) 
   }
 }
 
